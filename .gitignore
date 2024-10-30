@@ -1,0 +1,34 @@
+# Go binary files
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go workspace files
+*.test
+*.out
+*.log
+
+# Vendor directory
+/vendor/
+
+# Build artifacts
+/build/
+bin/
+out/
+
+# IDE/Editor files
+.idea/
+.vscode/
+*.swp
+*~
+*.sublime-workspace
+*.sublime-project
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment variable files
+.env
