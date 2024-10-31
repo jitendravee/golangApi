@@ -8,4 +8,5 @@ import (
 var RegisterTodoRoutes = func(router *mux.Router) {
 	router.HandleFunc("/todo", controllers.CreateTodoHandler).Methods("POST")
 	router.HandleFunc("/todo", controllers.GetAllTodoHandler).Methods("GET")
+	router.HandleFunc("/todo/{id}", controllers.UpdateTodoByIdHandler).Methods("PUT")
 }
