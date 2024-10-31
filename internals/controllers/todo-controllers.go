@@ -52,8 +52,8 @@ func init() {
 
 // CreateTodoHandler handles the POST request to create a new todo
 func CreateTodoHandler(w http.ResponseWriter, r *http.Request) {
-	var todo models.Todo
-	err := json.NewDecoder(r.Body).Decode(&todo)
+	todo := &models.Todo{}
+	err := json.NewDecoder(r.Body).Decode(todo)
 	if err != nil {
 		http.Error(w, "Invalid request payload", http.StatusBadRequest)
 		return
@@ -67,4 +67,16 @@ func CreateTodoHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(todo)
+}
+func GetAllTodoHandler(w http.ResponseWriter, r *http.Request) {
+	todos, err := models.GetAllTodos(todoCollection)
+
+	if err != nil {
+		http.Error(w, "Failed to fetch todos", http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("content-type", "application/json")
+	json.NewEncoder(w).Encode(todos)
+
 }
